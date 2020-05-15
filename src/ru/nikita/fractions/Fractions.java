@@ -20,10 +20,15 @@ public class Fractions {
     }
 
     public Fractions(double dotNumber) {
-        String[] type = Fractions.dotFormat(dotNumber).split("/");
-        this.whole = Integer.parseInt(type[0]);
-        this.numerator = Integer.parseInt(type[1]);
-        this.denominator = Integer.parseInt(type[2]);
+        this.whole = (int)dotNumber;
+        dotNumber %= 1;
+        int divisor = 1;
+        while (dotNumber % 1 != 0) {
+            dotNumber*=10;
+            divisor*=10;
+        }
+        this.numerator = (int)dotNumber;
+        this.denominator = divisor;
     }
 
     private static String dotFormat(double d) {
